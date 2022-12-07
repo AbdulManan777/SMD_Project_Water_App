@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    tools:context=".ServicesFragment">
+
+
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="200dp"
+       android:weightSum="7">
+
+
+
+        <ImageView
+            android:id="@+id/notifyimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_notifications_24"/>
+
+
+       <View
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"/>
+
+
+       <ImageView
+           android:id="@+id/sideeffectsimage"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"
+           android:src="@drawable/ic_baseline_error_24"/>
+
+
+       <View
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"/>
+
+
+       <ImageView
+           android:id="@+id/benefitsimage"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"
+           android:src="@drawable/ic_baseline_done_outline_24"/>
+
+
+       <View
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"/>
+
+
+       <ImageView
+           android:id="@+id/graphimage"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_weight="1"
+           android:src="@drawable/ic_baseline_graphic_eq_24"/>
+
+   </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:weightSum="7">
+
+
+
+        <TextView
+            android:id="@+id/notifytext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Notify"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/sideeffectstext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Side Effects"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/benefitstext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Benefits"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/graphtext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Graph"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:weightSum="7">
+
+
+
+        <ImageView
+            android:id="@+id/progressimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_data_usage_24"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <ImageView
+            android:id="@+id/servingsimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_local_laundry_service_24"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <ImageView
+            android:id="@+id/bedtimemodeimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_bedtime_24"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <ImageView
+            android:id="@+id/historyimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_history_24"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:weightSum="7">
+
+
+
+        <TextView
+            android:id="@+id/progresstext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Progress"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/servingstext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Servings"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/bedtimemodetext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Bed Time Mode"/>
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/historytext"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="History"/>
+
+    </LinearLayout>
+
+</FrameLayout>

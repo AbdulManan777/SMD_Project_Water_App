@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    tools:context=".Activity1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+
+        <TextView
+            android:id="@+id/mobilenumbertext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antic"
+            android:text="Enter your mobile number"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:fontFamily="@font/antic"
+            android:layout_below="@+id/mobilenumbertext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:ccp_defaultNameCode="PK" />
+
+        <EditText
+            android:id="@+id/phonenum"
+            android:fontFamily="@font/antic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mobilenumbertext"
+            android:layout_alignLeft="@+id/ccp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="phone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+
+
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phonenum"
+            android:hint="Enter Username"
+            android:id="@+id/username"/>
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:hint="Enter Password"
+            android:id="@+id/password"/>
+
+        <Button
+            android:id="@+id/continuebutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/round_btn"
+            android:fontFamily="@font/antic"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            tools:ignore="TextContrastCheck" />
+
+
+        <TextView
+            android:id="@+id/register"
+            android:fontFamily="@font/antic"
+            android:layout_below="@+id/continuebutton"
+            android:text="Register"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <TextView
+            android:id="@+id/conclusiontext"
+            android:fontFamily="@font/antic"
+            android:layout_below="@+id/register"
+            android:text="By proceeding, you consent to use the Water Remider android application authentically."
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

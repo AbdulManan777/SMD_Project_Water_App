@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    tools:context=".Activity1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/mobilenumbertext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antic"
+            android:text="Enter your mobile number"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp1"
+            android:fontFamily="@font/antic"
+            android:layout_below="@+id/mobilenumbertext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:ccp_defaultNameCode="PK" />
+
+        <EditText
+            android:id="@+id/phonenum"
+            android:fontFamily="@font/antic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mobilenumbertext1"
+            android:layout_alignLeft="@+id/ccp1"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="phone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Username"
+            android:layout_below="@+id/phonenum"
+            android:id="@+id/username1"/>
+
+
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username1"
+            android:hint="Enter Password"
+            android:id="@+id/password1"/>
+
+
+
+        <Button
+            android:id="@+id/signupbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password1"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_btn"
+            android:fontFamily="@font/antic"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signupbutton"
+            android:text="Already a registered user! LogIn"
+            android:gravity="center"
+            android:layout_marginTop="15dp"/>
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1064751891125",
+    "project_id": "water-reminder-app-96abb",
+    "storage_bucket": "water-reminder-app-96abb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064751891125:android:21b4c3c6d954ecf53934fc",
+        "android_client_info": {
+          "package_name": "com.ass2.water_reminderapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064751891125-urktr7s8u4ctk57o73nghcuqsjar3btv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCacLgpQj5JQlwyQrAEw8firjv6Hc4IqL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064751891125-urktr7s8u4ctk57o73nghcuqsjar3btv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
