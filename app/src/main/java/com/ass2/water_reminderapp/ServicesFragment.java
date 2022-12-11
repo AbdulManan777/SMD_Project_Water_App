@@ -21,7 +21,7 @@ import android.widget.TextView;
  */
 public class ServicesFragment extends Fragment {
 
-    String username;
+    String username,password;
 
     ImageView notifyimage, sideeffectsimage, benefitsimage, graphimage, progressimage, servingsimage, bedtimemodeimage, historyimage;
     TextView notifytext, sideeffectstext, benefitstext, graphtext, progresstext, servingstext, bedtimemodetext, historytext;
@@ -99,6 +99,7 @@ public class ServicesFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             username = bundle.getString("username");
+            password=bundle.getString("password");
         }
 
 
@@ -171,7 +172,11 @@ public class ServicesFragment extends Fragment {
         servingsimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), userInputs.class));
+
+                Intent i=new Intent(getActivity(),userInputs.class);
+                i.putExtra("username",username);
+                i.putExtra("password",password);
+                startActivity(i);
             }
         });
         servingstext.setOnClickListener(new View.OnClickListener() {

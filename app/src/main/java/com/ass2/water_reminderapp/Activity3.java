@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -42,7 +43,7 @@ public class Activity3 extends AppCompatActivity {
     ImageView profile,profile_dp;
     TextView username4,password4,phone4;
     String url;
-    String password;
+    String password,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,8 @@ public class Activity3 extends AppCompatActivity {
 
         username=getIntent().getStringExtra("Username");
         password=getIntent().getStringExtra("Password");
+        phone=getIntent().getStringExtra("Phone");
+
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +90,9 @@ public class Activity3 extends AppCompatActivity {
 
         password4.setText(password);
         username4.setText(username);
+        phone4.setText(phone);
+
+
 
 
 
@@ -160,6 +166,17 @@ public class Activity3 extends AppCompatActivity {
         queue2.add(request2);
 
 
+        profile_dp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Activity3.this,UpdateDpActivity.class);
+                i.putExtra("username",username);
+                i.putExtra("password",password);
+                startActivity(i);
+            }
+        });
+
+
 
 
 
@@ -188,11 +205,85 @@ public class Activity3 extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("username",username);
+        bundle.putString("password",password);
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        StringRequest request2=new StringRequest(Request.Method.POST, "http://"+IPServer.getIP_server()+"/smdproj/getImageOnly.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj=new JSONObject(response);
+
+                            if(obj.getInt("code")==1)
+                            {
+                                JSONArray contacts=obj.getJSONArray("pictures");
+
+                                for (int i=0; i<contacts.length();i++)
+                                {
+
+                                    JSONObject contact=contacts.getJSONObject(i);
+                                    //String usern=contact.getString("Username");
+                                    String image=contact.getString("image");
+                                    url="http://"+IPServer.getIP_server()+"/smdproj/Dps/"+image;
+
+                                    //MyContact m=new MyContact(usern,url);
+                                    //ls.add(m);
+                                    //adapter.notifyDataSetChanged();
+                                }
+
+                            }
+                            else{
+                                Toast.makeText(Activity3.this,obj.get("msg").toString(),Toast.LENGTH_LONG).show();
+                            }
+                            Glide.with(Activity3.this).load(url).into(profile);
+                            Glide.with(Activity3.this).load(url).into(profile_dp);
+
+                        } catch (JSONException e) {
+                            Toast.makeText(Activity3.this,response,Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Activity3.this,"Error Connecting Server",Toast.LENGTH_LONG).show();
+                    }
+                }
+
+        )
+        {
+
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params=new HashMap<>();
+                // Log.i("Username",username);
+                //Log.i("Password",password);
+                params.put("Username",username);
+                params.put("Password",password);
+                // params.put("Password",password);
+                // params.put("PhoneNum",phonenum.getText().toString());
+
+                return params;
+            }
+        };
+
+
+        RequestQueue queue2= Volley.newRequestQueue(Activity3.this);
+        queue2.add(request2);
     }
 }

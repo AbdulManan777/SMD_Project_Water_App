@@ -8,7 +8,7 @@
     tools:context=".Notify">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
 
@@ -21,11 +21,16 @@
 
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtview1"
             android:layout_below="@+id/back"
             android:layout_marginTop="15dp" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignRight="@+id/txtview1"
+            android:id="@+id/energy"/>
 
         <TextView
             android:layout_width="match_parent"

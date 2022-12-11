@@ -24,12 +24,13 @@ public class userInputs extends AppCompatActivity {
     SeekBar mseekbarforuser_height;
     Button save_userInfo;
     RelativeLayout mmale,mfemale;
+    String username,password;
 
     int intweight=60;
     int intage=21;
     int currentprogress;
     String mintprogress="150";
-    String typerofuser="0";
+    String typerofuser="Male";
     String weight2="60";
     String age2="21";
 
@@ -51,6 +52,8 @@ public class userInputs extends AppCompatActivity {
         mseekbarforuser_height=findViewById(R.id.seekbarforheight);
         mmale=findViewById(R.id.male);
         mfemale=findViewById(R.id.female);
+        username=getIntent().getStringExtra("username");
+        password=getIntent().getStringExtra("password");
 
 
 
@@ -168,6 +171,8 @@ public class userInputs extends AppCompatActivity {
                     intent.putExtra("height", mintprogress);
                     intent.putExtra("weight", weight2);
                     intent.putExtra("age", age2);
+                    intent.putExtra("username",username);
+                    intent.putExtra("password",password);
 
                     startActivity(intent);
 

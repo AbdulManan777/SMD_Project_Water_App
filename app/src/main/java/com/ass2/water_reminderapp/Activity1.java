@@ -91,6 +91,7 @@ public class Activity1 extends AppCompatActivity {
                                         Intent i = new Intent(Activity1.this, Activity3.class);
                                         i.putExtra("Username",username.getText().toString());
                                         i.putExtra("Password",password.getText().toString());
+                                        i.putExtra("Phone",phoneNo);
                                         startActivity(i);
                                         // finish();
 

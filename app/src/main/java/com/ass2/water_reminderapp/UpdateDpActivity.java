@@ -35,44 +35,40 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DpUploadActivity extends AppCompatActivity {
+public class UpdateDpActivity extends AppCompatActivity {
 
     ImageView dp;
     Button upload;
     Bitmap bitmap;
     String encodeImageString;
-    String Username, Password,phone;
+    String Username, Password;
     byte[] bytearray;
+    //String encodeImageString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dp_upload);
+        setContentView(R.layout.activity_update_dp);
 
+        dp = findViewById(R.id.dp3);
+        upload = findViewById(R.id.dpchat3);
+        Username = getIntent().getStringExtra("username");
+        Password = getIntent().getStringExtra("password");
 
-
-
-        dp=findViewById(R.id.dp);
-        upload=findViewById(R.id.dpchat);
-        Username=getIntent().getStringExtra("Username");
-        Password=getIntent().getStringExtra("Password");
-        phone=getIntent().getStringExtra("Phone");
-        Log.i(
-                "Username is",Username
-        );
 
         dp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dexter.withActivity(DpUploadActivity.this)
+                Dexter.withActivity(UpdateDpActivity.this)
                         .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                         .withListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
 
-                                Intent intent=new Intent(Intent.ACTION_PICK);
+                                Intent intent = new Intent(Intent.ACTION_PICK);
                                 intent.setType("image/*");
                                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                                startActivityForResult(Intent.createChooser(intent,"Browse Image"),1);
+                                startActivityForResult(Intent.createChooser(intent, "Browse Image"), 1);
 
                             }
 
@@ -92,45 +88,44 @@ public class DpUploadActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(bytearray==null){
+                if (bytearray == null) {
 
-                    Toast.makeText(DpUploadActivity.this,"Please Select Image first",Toast.LENGTH_LONG).show();
-                }
-                else {
+                    Toast.makeText(UpdateDpActivity.this, "Please Select Image first", Toast.LENGTH_LONG).show();
+                } else {
                     uploaddatatodb();
                 }
 
             }
         });
-
-
-
     }
 
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
-        if(requestCode==1 && resultCode==RESULT_OK)
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
         {
-            Uri filepath=data.getData();
-            try
+            if(requestCode==1 && resultCode==RESULT_OK)
             {
-                InputStream inputStream=getContentResolver().openInputStream(filepath);
-                bitmap= BitmapFactory.decodeStream(inputStream);
-                dp.setImageBitmap(bitmap);
-                encodeBitmapImage(bitmap);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                bytearray = stream.toByteArray();
-            }catch (Exception ex)
-            {
+                Uri filepath=data.getData();
+                try
+                {
+                    InputStream inputStream=getContentResolver().openInputStream(filepath);
+                    bitmap= BitmapFactory.decodeStream(inputStream);
+                    dp.setImageBitmap(bitmap);
+                    encodeBitmapImage(bitmap);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    bytearray = stream.toByteArray();
+                }catch (Exception ex)
+                {
 
+                }
             }
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+
+
 
     private void encodeBitmapImage(Bitmap bitmap)
     {
@@ -143,7 +138,7 @@ public class DpUploadActivity extends AppCompatActivity {
     public void uploaddatatodb(){
 
 
-        StringRequest request=new StringRequest(Request.Method.POST, "http://"+IPServer.getIP_server()+"/smdproj/dp.php", new Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, "http://"+IPServer.getIP_server()+"/smdproj/UpdateImg.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
             {
@@ -151,12 +146,10 @@ public class DpUploadActivity extends AppCompatActivity {
                 dp.setImageResource(R.drawable.dp_upload);
                 bytearray=null;
                 Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
-                Intent i=new Intent(DpUploadActivity.this,Activity3.class);
-                i.putExtra("Username",Username);
-                i.putExtra("Password",Password);
-                i.putExtra("Phone",phone);
-                startActivity(i);
+
                 Log.i("Response:", response);
+
+                finish();
 
             }
         }, new Response.ErrorListener() {
@@ -171,10 +164,11 @@ public class DpUploadActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError
             {
                 Map<String,String> map=new HashMap<String, String>();
-                map.put("Username",Username);
-                map.put("Password",Password);
-                map.put("PhoneNum",phone);
                 map.put("image",encodeImageString);
+                map.put("username",Username);
+                map.put("password",Password);
+                // map.put("PhoneNum",phone);
+
                 //map.put("Username",Username);
                 return map;
             }
@@ -186,4 +180,12 @@ public class DpUploadActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+
+
 }

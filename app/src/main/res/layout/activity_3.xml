@@ -30,6 +30,22 @@
 
 
 
+    <ImageView
+        android:id="@+id/persondrinkingwater"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/waterdrinking" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water---good pure good life"
+        android:textColor="@color/black"
+        android:layout_below="@+id/persondrinkingwater"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 
 
