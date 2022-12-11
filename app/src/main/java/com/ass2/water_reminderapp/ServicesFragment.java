@@ -21,6 +21,8 @@ import android.widget.TextView;
  */
 public class ServicesFragment extends Fragment {
 
+    String username;
+
     ImageView notifyimage, sideeffectsimage, benefitsimage, graphimage, progressimage, servingsimage, bedtimemodeimage, historyimage;
     TextView notifytext, sideeffectstext, benefitstext, graphtext, progresstext, servingstext, bedtimemodetext, historytext;
 
@@ -94,6 +96,11 @@ public class ServicesFragment extends Fragment {
         historyimage = view.findViewById(R.id.historyimage);
         historytext = view.findViewById(R.id.historytext);
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            username = bundle.getString("username");
+        }
+
 
 
         notifyimage.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +171,7 @@ public class ServicesFragment extends Fragment {
         servingsimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Servings.class));
+                startActivity(new Intent(getActivity(), userInputs.class));
             }
         });
         servingstext.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +184,9 @@ public class ServicesFragment extends Fragment {
         bedtimemodeimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), BedTimeMode.class));
+                Intent i=new Intent(getActivity(),BedTimeMode.class);
+                i.putExtra("username",username);
+                startActivity(i);
             }
         });
         bedtimemodetext.setOnClickListener(new View.OnClickListener() {

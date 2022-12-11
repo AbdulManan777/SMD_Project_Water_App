@@ -46,6 +46,10 @@ public class SignUp extends AppCompatActivity {
         ccp=findViewById(R.id.ccp1);
         signup=findViewById(R.id.signupbutton);
 
+        Log.i(
+                "Username is",username.getText().toString()
+        );
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,8 +65,18 @@ public class SignUp extends AppCompatActivity {
 
 
                 if(!username.getText().toString().equals("")&& !pass.getText().toString().equals("") && !phoneNo.equals("")){
-                    Log.i("Uerjarahu","Keseho");
-                    StringRequest request=new StringRequest(
+
+                    Intent i=new Intent(SignUp.this,DpUploadActivity.class);
+                    i.putExtra("Username",username.getText().toString());
+                    i.putExtra("Password",pass.getText().toString());
+                    i.putExtra("Phone",phoneNo);
+                    startActivity(i);
+
+
+
+
+                 //   Log.i("Uerjarahu","Keseho");
+                   /* StringRequest request=new StringRequest(
                             Request.Method.POST,
                             "http://"+IPServer.getIP_server()+"/smdproj/insert.php",
                             new Response.Listener<String>() {
@@ -123,7 +137,7 @@ public class SignUp extends AppCompatActivity {
                         }
                     };
                     RequestQueue queue= Volley.newRequestQueue(SignUp.this);
-                    queue.add(request);
+                    queue.add(request);*/
 
                 }
 

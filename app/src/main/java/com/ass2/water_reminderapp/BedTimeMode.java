@@ -1,5 +1,6 @@
 package com.ass2.water_reminderapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
@@ -16,12 +17,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ass2.water_reminderapp.databinding.ActivityBedTimeModeBinding;
 import com.ass2.water_reminderapp.databinding.ActivityMainBinding;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BedTimeMode extends AppCompatActivity {
 
@@ -35,12 +48,17 @@ public class BedTimeMode extends AppCompatActivity {
     AlarmManager alarmManager;
 
     PendingIntent pendingIntent;
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding=ActivityBedTimeModeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        username=getIntent().getStringExtra("username");
+
+
 
         createNotificationChannel();
 
@@ -136,6 +154,10 @@ public class BedTimeMode extends AppCompatActivity {
                     binding.selectedTime.setText(
                             String.format("0%2d",(materialTimePicker.getHour()-12))+ "  : "+String.format("0%2d", materialTimePicker.getMinute())+" PM"
                     );
+
+
+
+
                 }
 
                 else{
@@ -152,6 +174,72 @@ public class BedTimeMode extends AppCompatActivity {
                 calender.set(Calendar.MINUTE,materialTimePicker.getMinute());
                 calender.set(Calendar.SECOND,0);
                 calender.set(Calendar.MILLISECOND,0);
+
+
+
+
+
+
+                StringRequest request=new StringRequest(
+                        Request.Method.POST,
+                        "http://"+IPServer.getIP_server()+"/smdproj/Addbedtime.php",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject obj=new JSONObject(response);
+                                    if(obj.getInt("code")==1)
+                                    {
+                                        Toast.makeText(getApplicationContext(),"Bed timing added Successfully",Toast.LENGTH_LONG).show();
+
+                                        // i.putExtra("Password",password.getText().toString());
+
+                                        //startActivity(new Intent(Signup_Activity.this,DpUploadActivity.class));
+                                        //finish();
+                                    }
+                                    else{
+                                        Toast.makeText(
+                                                BedTimeMode.this,
+                                                obj.get("msg").toString()
+                                                ,Toast.LENGTH_LONG
+                                        ).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+
+                                    Toast.makeText(
+                                            BedTimeMode.this,
+                                            "Incorrect JSON"
+                                            ,Toast.LENGTH_LONG
+                                    ).show();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(
+                                        BedTimeMode.this,
+                                        error.toString().trim()
+                                        , Toast.LENGTH_LONG
+                                ).show();
+                            }
+                        })
+                {
+                    @Nullable
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+
+                        Map<String, String> params=new HashMap<>();
+                        params.put("username",username);
+                        params.put("bedtime",binding.selectedTime.getText().toString());
+                       // params.put("PhoneNum",phoneNo);
+
+                        return params;
+                    }
+                };
+                RequestQueue queue= Volley.newRequestQueue(BedTimeMode.this);
+                queue.add(request);
 
             }
         });
