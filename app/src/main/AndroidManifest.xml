@@ -119,12 +119,24 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity android:name=".userInputs"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value=""/>
+        </activity>
         <activity
             android:name=".Activity1"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+        <activity android:name=".required_water_intake"
+            android:exported="false">
+            <meta-data android:name="android.app.lib_name"
+                android:value=""/>
         </activity>
         <activity
             android:name=".MainActivity"

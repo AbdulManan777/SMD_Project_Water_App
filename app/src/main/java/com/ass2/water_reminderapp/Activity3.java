@@ -13,6 +13,7 @@ import com.ass2.water_reminderapp.databinding.ActivityMainBinding;
 public class Activity3 extends AppCompatActivity {
 
     Activity3Binding binding;
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +21,23 @@ public class Activity3 extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
 
+        username=getIntent().getStringExtra("Username");
+
+
+
+
+
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.home)
                 replaceFragment(new HomeFragment());
 
-            else if (item.getItemId() == R.id.services)
+            else if (item.getItemId() == R.id.services) {
+
+
+
                 replaceFragment(new ServicesFragment());
+            }
 
             else if (item.getItemId() == R.id.settings)
                 replaceFragment(new SettingsFragment());
@@ -38,6 +49,10 @@ public class Activity3 extends AppCompatActivity {
     }
 
     private void replaceFragment(Fragment fragment) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("username",username);
+        fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
