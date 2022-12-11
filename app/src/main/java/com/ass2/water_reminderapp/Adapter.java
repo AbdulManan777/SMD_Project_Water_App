@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +36,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Log.i("U value,",String.valueOf(ls.get(position).getIndex()));
 
         holder.Serial_no.setText(String.valueOf(ls.get(position).getIndex()));
 
         holder.glass.setText(String.valueOf(ls.get(position).getNo_of_water_glasses()));
 
-        holder.time.setText(ls.get(position).getTime().toString());
+        holder.time.setText(ls.get(position).getTime1());
 
 
 

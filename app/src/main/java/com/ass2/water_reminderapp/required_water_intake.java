@@ -27,7 +27,7 @@ public class required_water_intake extends AppCompatActivity {
         //Intent i = new Intent();
         Age = getIntent().getStringExtra("age");
         Gender = getIntent().getStringExtra("gender");
-        ls=new ArrayList<>();
+       // ls=new ArrayList<>();
         Calendar calender= Calendar.getInstance();
 
         Log.i("Hello g,",Age);
@@ -44,38 +44,40 @@ public class required_water_intake extends AppCompatActivity {
         rv = findViewById(R.id.rv);
         // setting layout Manager for Recycler View
         RecyclerView.LayoutManager lm=new LinearLayoutManager(required_water_intake.this);
+        ls=new ArrayList<>();
         adapter=new Adapter(required_water_intake.this,ls);
         rv.setAdapter(adapter);
         rv.setLayoutManager(lm);
 
 
+        int f=0;
+        for(int i1=1,j=9;i1<=glass;i1++,j++,f++){
 
-        for(int i1=1,j=9;i1<=glass;i1++,j++){
-            Log.i("J value,", String.valueOf(j));
+            user_required_water_info u2=new user_required_water_info();
+             u2.user_required_water_infoAdd(Age,Gender);
+
 
 
             calender.set(Calendar.HOUR_OF_DAY, j);
             calender.set(Calendar.MINUTE,0);
             calender.set(Calendar.SECOND,0);
             calender.set(Calendar.MILLISECOND,0);
-            u.setCalender(i1,calender);
+            u2.setCalender(i1,calender);
 
-            ls.add(u);
+
+
+            ls.add(u2);
+            Log.i("Value of Calender: ", String.valueOf(ls.get(f).getTime1()));
+            adapter.notifyDataSetChanged();
            //
            // adapter.notifyDataSetChanged();
             calender.add(Calendar.HOUR_OF_DAY,1);
 
-            adapter.notifyDataSetChanged();
-
-
-
-
-
-
-
-
 
         }
+
+
+
 
        // ls.add(new user_required_water_info(Age,Gender));
 

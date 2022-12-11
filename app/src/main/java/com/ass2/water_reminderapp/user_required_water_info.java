@@ -7,7 +7,7 @@ public class user_required_water_info {
     int no_of_water_glasses;
     String Age;
     String gender;
-    Calendar water_time;
+    String water_time;
     int index;
 
 
@@ -37,10 +37,13 @@ public class user_required_water_info {
     }
 
     public void setCalender(int i, Calendar c){
-        this.water_time=c;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh-mm a");
+
+        this.water_time=simpleDateFormat.format(c.getTime());
         this.index=i;
 
     }
+
 
     public int getIndex(){
         return this.index;
@@ -52,11 +55,11 @@ public class user_required_water_info {
         return no_of_water_glasses;
     }
 
-    public String getTime(){
+    public String getTime1(){
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh-mm a");
+      //  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh-mm a");
 
-        return simpleDateFormat.format(this.water_time.getTime());
+        return this.water_time;
     }
 
     public String getAge() {
